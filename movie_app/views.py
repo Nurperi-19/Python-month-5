@@ -31,7 +31,7 @@ def movies_detail_view(request, id):
     try:
         movie = Movie.objects.get(id=id)
     except Movie.DoesNotExist:
-        return Response(data={'erroe': 'Movie not found!'},
+        return Response(data={'error': 'Movie not found!'},
                         status=status.HTTP_404_NOT_FOUND)
     serializer = MovieSerializer(movie)
     return Response(data=serializer.data)
@@ -47,7 +47,9 @@ def reviews_detail_view(request, id):
     try:
         review = Review.objects.get(id=id)
     except Review.DoesNotExist:
-        return Response(data={'error': 'Revie not found!'},
+        return Response(data={'error': 'Review not found!'},
                         status=status.HTTP_404_NOT_FOUND)
     serializer = ReviewSerializer(review)
     return Response(data=serializer.data)
+
+
