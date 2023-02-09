@@ -15,7 +15,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     director = serializers.StringRelatedField()
-    reviews = ReviewSerializer(many=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
     class Meta:
         model = Movie
         fields = 'title duration director rating reviews'.split()

@@ -19,12 +19,20 @@ from movie_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/directors/', views.directors_view),
-    path('api/v1/directors/<int:id>/', views.directors_detail_view),
-    path('api/v1/movies/', views.movies_view),
-    path('api/v1/movies/<int:id>/', views.movies_detail_view),
-    path('api/v1/reviews/', views.reviews_view),
-    path('api/v1/reviews/<int:id>/', views.reviews_detail_view),
+    path('api/v1/directors/', views.DirectorListCreateAPIView.as_view()),
+    path('api/v1/directors/<int:id>/', views.DirectorDetailAPIView.as_view()),
+    path('api/v1/movies/', views.MovieModelViewSet.as_view({
+        'get': 'list', 'post': 'create'
+    })),
+    path('api/v1/movies/<int:id>/', views.MovieModelViewSet.as_view({
+        'get': 'retrieve', 'put': 'update', 'delete': 'destroy'
+    })),
+    path('api/v1/reviews/', views.ReviewModelViewSet.as_view({
+        'get': 'list', 'post': 'create'
+    })),
+    path('api/v1/reviews/<int:id>/', views.ReviewModelViewSet.as_view({
+        'get': 'retrieve', 'put': 'update', 'delete': 'destroy'
+    })),
     path('api/v1/users/', include('users.urls'))
 
 ]
